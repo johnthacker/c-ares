@@ -581,6 +581,7 @@ ares_status_t ares_queue_wait_empty(ares_channel_t *channel, int timeout_ms)
                             (tv_remaining.tv_usec / 1000));
       if (tms == 0) {
         status = ARES_ETIMEOUT;
+        break;
       } else {
         status =
           ares__thread_cond_timedwait(channel->cond_empty, channel->lock, tms);
